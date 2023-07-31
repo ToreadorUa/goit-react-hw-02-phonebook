@@ -21,9 +21,7 @@ export const Input = styled.input`
   font-size: 18px;
   width: 300px;
 `;
-export const InputFilter = styled(Input)`
-  margin-left: 20px;
-`;
+
 export const Container = styled.div`
   padding: 20px;
 `;

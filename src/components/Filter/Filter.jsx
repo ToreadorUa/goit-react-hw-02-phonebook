@@ -1,4 +1,4 @@
-import { Input, InputFilter } from 'components/Form/Form.styled';
+import { Input } from 'components/Form/Form.styled';
 
 export const Filter = ({ handleChange, filter }) => (
   <>
