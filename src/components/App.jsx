@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { Form } from './Form/Form';
+import { Container } from './Form/Form.styled';
 
 export class App extends Component {
   state = {
@@ -27,6 +28,11 @@ export class App extends Component {
       ),
     }));
   };
+  addContact = user => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, user],
+    }));
+  };
 
   render() {
     const filterArray = this.state.contacts.filter(({ name }) =>
@@ -34,16 +40,16 @@ export class App extends Component {
     );
 
     return (
-      <>
+      <Container>
         <h1>Phonebook</h1>
-        <Form contacts={this.contacts} />
+        <Form addContact={this.addContact} contacts={this.state.contacts} />
         <h2>Contacts </h2>
-        <Filter handleChange={this.handleChange} filter={this.filter} />
+        <Filter handleChange={this.handleChange} filter={this.state.filter} />
         <ContactList
           filterArray={filterArray}
           handleDelete={this.handleDelete}
         />
-      </>
+      </Container>
     );
   }
 }

@@ -13,32 +13,29 @@ export class Form extends Component {
     });
   };
   handleSub = e => {
-    // создание нового контакта с проверкой на существование такого
+    // создание нового контакта с проверкой на существование такого же
     e.preventDefault();
+
+    console.log(this.props.contacts);
     if (
       this.props.contacts.some(el =>
         el.name.toLowerCase().includes(this.state.name.toLowerCase())
       )
-    )
-      this.props.contacts.setState(prevState => ({
-        contacts: [
-          ...prevState.contacts,
-          {
-            name: this.state.name,
-            number: this.state.number,
-            id: nanoid(),
-          },
-        ],
-        name: '',
-        number: '',
-      }));
-    else {
+    ) {
       alert(`${this.state.name} is already exist`);
       this.setState({
         name: '',
         number: '',
       });
-      return prevState;
+      return;
+    } else {
+      const newContact = {
+        id: nanoid(),
+        name: this.state.name,
+        number: this.state.number,
+      };
+      this.props.addContact(newContact);
+      this.setState({ name: '', number: '' });
     }
   };
 
